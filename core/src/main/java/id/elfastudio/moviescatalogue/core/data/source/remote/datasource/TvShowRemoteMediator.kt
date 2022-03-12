@@ -32,17 +32,17 @@ class TvShowRemoteMediator(
 
         try {
             val response = tvShowDataSource.getTvShow(page)
-            var isEndOfList = false
+            var isEndOfList: Boolean? = null
             when(response){
                 is ApiResponse.Success -> {
-                    val isEndOfList = response.data.results.isNullOrEmpty()
+                    isEndOfList = response.data.results.isNullOrEmpty()
                     appDatabase.withTransaction {
                         if (loadType == LoadType.REFRESH) {
                             appDatabase.tvShowRemoteKeysDao().clearTvShowRemoteKeys()
                             appDatabase.tvShowDao().deleteAll()
                         }
                         val prevKey = if (page == 1) null else page - 1
-                        val nextKey = if (isEndOfList) null else page + 1
+                        val nextKey = if (isEndOfList!!) null else page + 1
                         val remoteKeys = arrayListOf<TvShowRemoteKeys>()
                         val data = arrayListOf<TVShowEntity>()
                         val favorite = arrayListOf<FavoriteTvShow>()
@@ -68,10 +68,10 @@ class TvShowRemoteMediator(
                         }
                     }
                 }
-                is ApiResponse.Error -> isEndOfList = true
-                is ApiResponse.Empty -> isEndOfList = true
+                is ApiResponse.Error -> isEndOfList = null
+                is ApiResponse.Empty -> isEndOfList = null
             }
-            return MediatorResult.Success(endOfPaginationReached = isEndOfList)
+            return MediatorResult.Success(endOfPaginationReached = isEndOfList!!)
         } catch (exception: IOException) {
             exception.printStackTrace()
             return MediatorResult.Error(exception)
