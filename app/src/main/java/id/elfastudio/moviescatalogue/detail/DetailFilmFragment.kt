@@ -1,7 +1,6 @@
 package id.elfastudio.moviescatalogue.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
@@ -77,8 +76,6 @@ class DetailFilmFragment : BaseFragment() {
 
     private fun setObserver() {
         viewModel.movie.observe(viewLifecycleOwner) { resource ->
-            Log.i("CEHCK", "setObserver: SUCCESS ${resource is Resource.Success}")
-            Log.i("CEHCK", "setObserver: SUCCESS ${resource.data}")
             when (resource) {
                 is Resource.Loading -> showLoading()
                 is Resource.Success -> {
