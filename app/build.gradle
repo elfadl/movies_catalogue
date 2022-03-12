@@ -8,6 +8,10 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
+    lintOptions {
+        abortOnError false
+        baseline(file("lint-baseline.xml"))
+    }
     compileSdk 31
 
     defaultConfig {
