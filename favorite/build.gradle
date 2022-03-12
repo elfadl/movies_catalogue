@@ -36,6 +36,10 @@ dependencies {
     implementation project(":app")
     implementation project(":core")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.paging:paging-common-ktx:$pagingVersion"
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation ("androidx.paging:paging-common-ktx:$pagingVersion"){
+        exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-core-jvm'
+    }
+    implementation ("androidx.paging:paging-runtime-ktx:$pagingVersion"){
+        exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-core-jvm'
+    }
 }

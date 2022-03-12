@@ -1,5 +1,6 @@
 package id.elfastudio.moviescatalogue.core.utils
 
+import id.elfastudio.moviescatalogue.core.data.source.local.entity.MovieEntity
 import id.elfastudio.moviescatalogue.core.data.source.remote.response.*
 import id.elfastudio.moviescatalogue.core.domain.model.Movie
 import id.elfastudio.moviescatalogue.core.domain.model.TvShow
@@ -165,6 +166,158 @@ object DataDummy {
             "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
             1.0,
             false
+        )
+    )
+
+    fun generateMovieEntities(): List<MovieEntity> = listOf(
+        MovieEntity(
+            1,
+            "A Star Is Born",
+            listOf(
+                "Drama",
+                "Romance"
+            ),
+            "05 October 2018",
+            "2h 16m",
+            75,
+            "Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Ally's career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            123.4
+        ),
+        MovieEntity(
+            2,
+            "Alita: Battle Angel",
+            listOf(
+                "Action",
+                "Science Fiction",
+                "Adventure"
+            ),
+            "2019-02-14 (US)",
+            "2h 2m",
+            72,
+            "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul of a young woman with an extraordinary past.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            3,
+            "Aquaman",
+            listOf(
+                "Action",
+                "Adventure",
+                "Fantasy"
+            ),
+            "2018-12-21 (US)",
+            "2h 23m",
+            69,
+            "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            4,
+            "Bohemian Rhapsody",
+            listOf(
+                "Music",
+                "Drama",
+                "History"
+            ),
+            "2018-10-30 (ID)",
+            "2h 15m",
+            80,
+            "Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            5,
+            "Cold Pursuit",
+            listOf(
+                "Action",
+                "Crime",
+                "Thriller"
+            ),
+            "2019-02-08 (US)",
+            "1h 59m",
+            57,
+            "The quiet family life of Nels Coxman, a snowplow driver, is upended after his son's murder. Nels begins a vengeful hunt for Viking, the drug lord he holds responsible for the killing, eliminating Viking's associates one by one. As Nels draws closer to Viking, his actions bring even more unexpected and violent consequences, as he proves that revenge is all in the execution.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            6,
+            "Creed II",
+            listOf(
+                "Drama"
+            ),
+            "2018-11-21 (US)",
+            "2h 10m",
+            69,
+            "Between personal obligations and training for his next big fight against an opponent with ties to his family's past, Adonis Creed is up against the challenge of his life.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            7,
+            "Glass",
+            listOf(
+                "Thriller",
+                "Drama",
+                "Science Fiction"
+            ),
+            "2019-01-18 (US)",
+            "2h 9m",
+            67,
+            "In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            8,
+            "How to Train Your Dragon: The Hidden World",
+            listOf(
+                "Animation",
+                "Family",
+                "Adventure"
+            ),
+            "2019-01-09 (ID)",
+            "1h 44m",
+            78,
+            "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless’ discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup’s reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            9,
+            "Avengers: Infinity War",
+            listOf(
+                "Adventure",
+                "Action",
+                "Science Fiction"
+            ),
+            "2018-04-27 (US)",
+            "2h 29m",
+            83,
+            "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
+        ),
+        MovieEntity(
+            10,
+            "Spider-Man: Into the Spider-Verse",
+            listOf(
+                "Action",
+                "Adventure",
+                "Animation",
+                "Science Fiction",
+                "Comedy"
+            ),
+            "2018-12-14 (US)",
+            "1h 57m",
+            84,
+            "Miles Morales is juggling his life between being a high school student and being a spider-man. When Wilson \"Kingpin\" Fisk uses a super collider, others from across the Spider-Verse are transported to this dimension.",
+            "/dhRcIc6acdXG83CJ2z9Hns6Fkg2.jpg",
+            1.0
         )
     )
 

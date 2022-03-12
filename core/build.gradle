@@ -35,7 +35,6 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
@@ -57,7 +56,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
 
     //Paging 3
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation ("androidx.paging:paging-runtime-ktx:$pagingVersion"){
+        exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-core-jvm'
+    }
 
     //testing
     testImplementation "junit:junit:$junitVersion"
@@ -72,6 +73,7 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$androidCoreTestVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebserverVersion"
     testImplementation "io.mockk:mockk:$mockKVersion"
     testImplementation "io.mockk:mockk-agent-jvm:$mockKVersion"
