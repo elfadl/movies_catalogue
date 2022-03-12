@@ -17,6 +17,7 @@ import id.elfastudio.moviescatalogue.core.domain.repository.IMovieRepository
 import id.elfastudio.moviescatalogue.core.domain.repository.ITvShowRepository
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -45,6 +46,12 @@ val networkModule = module {
     single {
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val hostname = "api.themoviedb.org"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/oD/WAoRPvbez1Y2dfYfuo4yujAcYHXdv1Ivb2v2MOKk=")
+            .add(hostname, "sha256/JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA=")
+            .add(hostname, "sha256/++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor { chain ->
@@ -56,6 +63,7 @@ val networkModule = module {
                 request.url(url)
                 return@addInterceptor chain.proceed(request.build())
             }
+            .certificatePinner(certificatePinner)
             .build()
     }
     single {
