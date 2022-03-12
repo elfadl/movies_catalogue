@@ -1,0 +1,298 @@
+Skenario Testing:
+
+DetailFilmViewModelTest
+- Memuat Movie (Sukses)
+  * Menyiapkan data MovieResponse
+  * Menyiapkan data Movie
+  * Memanipulasi return dari fungsi getDetailMovie() yang ada di dalam MovieRepository dengan nilai LiveData Resource.success
+  * Memberikan nilai pada movieId yang ada di dalam viewModel
+  * Melakukan observe pada viewModel.getMovie() dengan bantuan LiveDataTestUtil
+  * Melakukan verifikasi apakah fungsi getDetailMovie() pada repository sudah dipanggil
+  * Memastikan hasil observe dari getMovie() apakah bernilai sama dengan data Movie yang sudah disiapkan sebelumnya
+- Memuat Movie (Error)
+  * Menyiapkan data DetailMovieResponse
+  * Memanipulasi return dari fungsi getDetailMovie() yang ada di dalam MovieRepository dengan nilai LiveData Resource.error()
+  * Memberikan nilai pada movieId yang ada di dalam viewModel
+  * Melakukan observe pada viewModel.getMovie() dengan bantuan LiveDataTestUtil
+  * Melakukan verifikasi apakah fungsi getDetailMovie() pada repository sudah dipanggil
+  * Memastikan hasil observe dari getMovie() apakah bernilai Resource.error
+- Memuat TVShow (Sukses)
+  * Menyiapkan data TvShowResponse
+  * Menyiapkan data TVShow
+  * Menyiapkan data Resource.success()
+  * Memanipulasi return dari fungsi getDetailTvShow() yang ada di dalam TvShowRepository dengan nilai LiveData Resource.success()
+  * Memberikan nilai pada tvShowId yang ada di dalam viewModel
+  * Melakukan observe pada viewModel.getTvShow() dengan bantuan LiveDataTestUtil
+  * Melakukan verifikasi apakah fungsi getDetailTvShow() pada repository sudah dipanggil
+  * Memastikan hasil observe dari getTvShow() apakah bernilai sama dengan data TvShow yang sudah disiapkan sebelumnya
+- Memuat TVShow (Error)
+  * Menyiapkan data DetailTvShowResponse
+  * Memanipulasi return dari fungsi getDetailTvShow() yang ada di dalam TvShowRepository dengan nilai LiveData Resource.error()
+  * Memberikan nilai pada tvShowId yang ada di dalam viewModel
+  * Melakukan observe pada viewModel.getTvShow() dengan bantuan LiveDataTestUtil
+  * Melakukan verifikasi apakah fungsi getDetailTvShow() pada repository sudah dipanggil
+  * Memastikan hasil observe dari getTvShow() apakah bernilai Resource.error()
+
+MovieViewModelTest
+- Memuat Movie (Sukses)
+  * Menyiapkan data List<Movie>
+  * Menyiapkan object PagingData dari data List<Movie>
+  * Memanipulasi return dari fungsi getMovie() yang ada di dalam MovieRepository dengan nilai Flow<PagingData>
+  * Mengambil nilai dari fungsi getMovies() yang ada di dalam viewModel
+  * Melakukan verifikasi apakah fungsi getMovie() pada repository sudah dipanggil
+  * Membuat object AsyncPagingDataDiffer bertujuan untuk mengetahui perubahan data pada PagingData
+  * Melakukan aksi submitData pada object AsyncPagingDataDiffer yang telah dibuat sebelumnya dengan nilai PagingData yang diambil dari fungsi getMovies() yang ada di dalam viewModel
+  * Memanggil fungsi advanceUntilIdle() untuk menjalankan seluruh task yang masih pending
+  * Memastikan data items yang diambil dari object AsyncPagingDataDiffer sama dengan data List<Movie> yang telah disiapkan sebelumnya
+- Memuat Movie (Error)
+  * Menyiapkan data Movie
+  * Menyiapkan data List<FavoriteMovieWithMovie>
+  * Memanipulasi return dari fungsi getFavoriteMovies() yang ada di dalam FakeMovieRepository bernilai LiveData<List<FavoriteMovieWithMovie>>
+  * Melakukan observe pada fungsi getFavoriteMovies() yang ada di dalam viewModel dengan bantuan LiveDataTestUtil
+  * Melakukan verifikasi apakah fungsi getFavoriteMovies() yang ada di dalam FakeMovieRepository terpanggil
+  * Memastikan hasil observe dari fungsi getFavoriteMovies() yang ada di dalam viewModel sama dengan data List<FavoriteMovieWithMovie> yang telah disiapkan sebelumnya
+
+TvShowViewModelTest
+- Memuat TVShow (Sukses)
+  * Menyiapkan data List<TVShowWithSeason>
+  * Menyiapkan object PagingData dari data List<TVShowWithSeason>
+  * Memanipulasi return dari fungsi getTvShow() yang ada di dalam TvShowRepository dengan nilai Flow<PagingData>
+  * Mengambil nilai dari fungsi getTvShows() yang ada di dalam viewModel
+  * Melakukan verifikasi apakah fungsi getTvShow() pada repository sudah dipanggil
+  * Membuat object AsyncPagingDataDiffer bertujuan untuk mengetahui perubahan data pada PagingData
+  * Melakukan aksi submitData pada object AsyncPagingDataDiffer yang telah dibuat sebelumnya dengan nilai PagingData yang diambil dari fungsi getTvShows() yang ada di dalam viewModel
+  * Memanggil fungsi advanceUntilIdle() untuk menjalankan seluruh task yang masih pending
+  * Memastikan data items yang diambil dari object AsyncPagingDataDiffer sama dengan data List<TVShowWithSeason> yang telah disiapkan sebelumnya
+- Memuat TVShow (Error)
+  * Menyiapkan data TVShow
+  * Menyiapkan data List<FavoriteTvShowWithTvShow>
+  * Memanipulasi return dari fungsi getFavoriteTvShows() yang ada di dalam FakeTvShowRepository bernilai LiveData<List<FavoriteTvShowWithTvShow>>
+  * Melakukan observe pada fungsi getFavoriteTvShows() yang ada di dalam viewModel dengan bantuan LiveDataTestUtil
+  * Melakukan verifikasi apakah fungsi getFavoriteTvShows() yang ada di dalam FakeTvShowRepository terpanggil
+  * Memastikan hasil observe dari fungsi getFavoriteTvShows() yang ada di dalam viewModel sama dengan data List<FavoriteTvShowWithTvShow> yang telah disiapkan sebelumnya
+
+MovieRepositoryTest
+Catatan:
+ * Untuk test pada Paging, dibedakan ke MovieRemoteMediatorTest karena crash dengan InstantTaskExecutorRule()
+- Memuat Detail Movie
+  * Menyiapkan data Movie
+  * Menyiapkan data DetailMovieResponse
+  * Memanipulasi return dari fungsi getDetailMovie() yang ada di dalam MovieDataSource dengan nilai Resource.success()
+  * Malakukan pemanggilan terhadap fungsi getDetailMovie() yang ada di dalam MovieDataSource kemudian dimapping menjadi data Movie dan Favorite yang kemudian keduanya diinsert ke dalam database
+  * Mengambil data dari database melalui movieDao().getDetailMovie()
+  * Memastikan data pada movieDao().getDetailMovie() bernilai tidak null
+  * Memastikan data pada movieDao().getDetailMovie() bernilai FavoriteMovieWithMovie
+- Memuat Favorite Movie
+  * Menyiapkan data FavoriteMovie
+  * Menyiapkan data ekspektasi FavoriteMovieWithMovie
+  * Menyiapkan data Movie
+  * Melakukan insert data Movie ke database
+  * Melakukan insert data FavoriteMovie ke database
+  * Mengambil data FavoriteMovieWithMovie dari database
+  * Memastikan data FavoriteMovieWithMovie dari database tidak bernilai null
+  * Memastikan data FavoriteMovieWithMovie dari database bernilai data ekspektasi FavoriteMovieWithMovie
+- Melakukan Aksi Favorite pada Movie
+  * Menyiapkan data Movie
+  * Menyiapkan data FavoriteMovie
+  * Malakukan insert data FavoriteMovie ke dalam database
+  * Mengambil data FavoriteMovie dari database
+  * Memastikan data FavoriteMovie dari database sesuai ekspektasi
+  * Memastikan variable favorite pada data FavoriteMovie dari database bernilai true
+
+MovieRemoteMediatorTest
+- Cek paging ketika data di page berikutnya ada, maka return bernilai Sukses
+  * Menyiapkan data MovieResponse
+  * Memanipulasi return dari remote.getMovie() yang ada di dalam MovieDataSource dengan nilai Resource.success() dengan data MovieResponse
+  * Menyiapkan MovieRemoteMediator
+  * Menyiapkan PagingState
+  * Memanggil fungsi load pada RemoteMediator
+  * Menguji hasil dari fungsi load yang ada di dalam RemoteMediator dengan espektasi bernilai RemoteMediator.MediatorResult.Success
+  * Menguji hasil dari variabel endOfPaginationReached yang ada di dalam RemoteMediator dengan espektasi bernilai false (karena data tidak kosong)
+- Cek paging ketika data di page berikutnya kosong, maka return bernilai Sukses dan endOfPaginationReached bernilai true
+  * Memanipulasi return dari remote.getMovie() yang ada di dalam MovieDataSource dengan nilai Resource.success() dengan data kosong
+  * Menyiapkan MovieRemoteMediator
+  * Menyiapkan PagingState
+  * Memanggil fungsi load pada RemoteMediator
+  * Menguji hasil dari fungsi load yang ada di dalam RemoteMediator dengan espektasi bernilai RemoteMediator.MediatorResult.Success
+  * Menguji hasil dari variabel endOfPaginationReached yang ada di dalam RemoteMediator dengan espektasi bernilai true (karena data kosong)
+- Cek paging ketika error
+  * Memanipulasi return dari remote.getMovie() yang ada di dalam MovieDataSource dengan nilai Resource.error()
+  * Menyiapkan MovieRemoteMediator
+  * Menyiapkan PagingState
+  * Memanggil fungsi load pada RemoteMediator
+  * Menguji hasil dari fungsi load yang ada di dalam RemoteMediator dengan espektasi bernilai RemoteMediator.MediatorResult.Error
+
+TvShowRepositoryTest
+Catatan:
+ * Untuk test pada Paging, dibedakan ke TvShowRemoteMediatorTest karena crash dengan InstantTaskExecutorRule()
+- Memuat Detail TVShow
+  * Menyiapkan data TVShow
+  * Menyiapkan data DetailTvShowResponse
+  * Memanipulasi return dari fungsi getDetailTvShow() yang ada di dalam TvShowDataSource dengan nilai Resource.success()
+  * Malakukan pemanggilan terhadap fungsi getDetailTvShow() yang ada di dalam TvShowDataSource kemudian dimapping menjadi data TVShow dan Favorite yang kemudian keduanya diinsert ke dalam database
+  * Mengambil data dari database melalui movieDao().getDetailTvShow()
+  * Memastikan data pada movieDao().getDetailTvShow() bernilai tidak null
+  * Memastikan data pada movieDao().getDetailTvShow() bernilai FavoriteTvShowWithTvShow
+- Memuat Favorite TVShow
+  * Menyiapkan data FavoriteTvShow
+  * Menyiapkan data ekspektasi FavoriteTvShowWithTvShow
+  * Menyiapkan data TVShow
+  * Melakukan insert data TVShow ke database
+  * Melakukan insert data FavoriteTvShow ke database
+  * Mengambil data FavoriteTvShowWithTvShow dari database
+  * Memastikan data FavoriteTvShowWithTvShow dari database tidak bernilai null
+  * Memastikan data FavoriteTvShowWithTvShow dari database bernilai data ekspektasi FavoriteTvShowWithTvShow
+- Malakukan aksi favorite pada TVShow
+  * Menyiapkan data TVShow
+  * Menyiapkan data FavoriteTvShow
+  * Malakukan insert data FavoriteTvShow ke dalam database
+  * Mengambil data FavoriteTvShow dari database
+  * Memastikan data FavoriteTvShow dari database sesuai ekspektasi
+  * Memastikan variable favorite pada data FavoriteTvShow dari database bernilai true
+
+TvShowRemoteMediatorTest
+- Cek paging ketika data di page berikutnya ada, maka return bernilai Sukses
+  * Menyiapkan data TvShowResponse
+  * Memanipulasi return dari remote.getTvShow() yang ada di dalam TvShowDataSource dengan nilai Resource.success() dengan data TvShowResponse
+  * Menyiapkan TvShowRemoteMediator
+  * Menyiapkan PagingState
+  * Memanggil fungsi load pada RemoteMediator
+  * Menguji hasil dari fungsi load yang ada di dalam RemoteMediator dengan espektasi bernilai RemoteMediator.MediatorResult.Success
+  * Menguji hasil dari variabel endOfPaginationReached yang ada di dalam RemoteMediator dengan espektasi bernilai false (karena data tidak kosong)
+- Cek paging ketika data di page berikutnya kosong, maka return bernilai Sukses dan endOfPaginationReached bernilai true
+  * Memanipulasi return dari remote.getTvShow() yang ada di dalam TvShowDataSource dengan nilai Resource.success() dengan data kosong
+  * Menyiapkan TvShowRemoteMediator
+  * Menyiapkan PagingState
+  * Memanggil fungsi load pada RemoteMediator
+  * Menguji hasil dari fungsi load yang ada di dalam RemoteMediator dengan espektasi bernilai RemoteMediator.MediatorResult.Success
+  * Menguji hasil dari variabel endOfPaginationReached yang ada di dalam RemoteMediator dengan espektasi bernilai true (karena data kosong)
+- Cek paging ketika error
+  * Memanipulasi return dari remote.getTvShow() yang ada di dalam TvShowDataSource dengan nilai Resource.error()
+  * Menyiapkan TvShowRemoteMediator
+  * Menyiapkan PagingState
+  * Memanggil fungsi load pada RemoteMediator
+  * Menguji hasil dari fungsi load yang ada di dalam RemoteMediator dengan espektasi bernilai RemoteMediator.MediatorResult.Error
+
+
+MainActivityTest (Instrumental Test)
+- Memuat Movie
+  * Memastikan Recycler View telah tampil
+  * Melakukan scroll RecyclerView ke posisi 10 untuk memastikan data Movie sudah termuat
+- Memuat TVShow
+  * Berpindah ke halaman TV SHOWS
+  * Memastikan RecyclerView telah tampil
+  * Melakukan scroll RecyclerView ke posisi 10 untuk memastikan data TvShows sudah termuat
+- Memuat Detail Movie
+  * Memastikan RecyclerView telah tampil
+  * Melakukan klik RecyclerView pada posisi 0
+  * Memastikan TextView title telah tampil
+  * Memastikan TextView genre telah tampil
+  * Memastikan TextView runtime telah tampil
+  * Memastikan TextView score telah tampil
+  * Memastikan TextView overview telah tampil
+  * Memastikan TextView release telah tampil
+  * Memastikan ImageView poster telah tampil
+  * Memastikan TextView label season tidak tampil
+  * Memastikan RecyclerView season tidak tampil
+  * Memastikan FloatingActionButton share telah tampil
+  * Memastikan Toolbar tampil
+  * Memastikan Menu favorite tampil
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_border (not favorite)
+- Melakukan Aksi Favorite pada Movie
+  * Memastikan RecyclerView telah tampil
+  * Melakukan klik RecyclerView pada posisi 0
+  * Memastikan TextView title telah tampil
+  * Memastikan TextView genre telah tampil
+  * Memastikan TextView runtime telah tampil
+  * Memastikan TextView score telah tampil
+  * Memastikan TextView overview telah tampil
+  * Memastikan TextView release telah tampil
+  * Memastikan ImageView poster telah tampil
+  * Memastikan TextView label season tidak tampil
+  * Memastikan RecyclerView season tidak tampil
+  * Memastikan FloatingActionButton share telah tampil
+  * Memastikan Toolbar tampil
+  * Memastikan Menu favorite tampil
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_border (not favorite)
+  * Melakukan klik pada Menu favorite
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_white (favorite)
+  * Mengambil title dari detail movie (untuk memastikan masuk pada list favorite)
+  * Melakukan aksi back
+  * Berpindah ke halaman Favorite
+  * Memastikan RecyclerView tampil
+  * Melakukan klik RecyclerView pada posisi 0
+  * Memastikan TextView title telah tampil
+  * Memastikan TextView genre telah tampil
+  * Memastikan TextView runtime telah tampil
+  * Memastikan TextView score telah tampil
+  * Memastikan TextView overview telah tampil
+  * Memastikan TextView release telah tampil
+  * Memastikan ImageView poster telah tampil
+  * Memastikan TextView label season tidak tampil
+  * Memastikan RecyclerView season tidak tampil
+  * Memastikan FloatingActionButton share telah tampil
+  * Memastikan Toolbar tampil
+  * Memastikan Menu favorite tampil
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_white (favorite)
+  * Melakukan klik pada Menu favorite
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_border (not favorite)
+  * Melakukan aksi back
+  * Memastikan Data is Empty telah tampil
+- Memuat Detail TVShow
+  * Berpindah ke halaman TV SHOWS
+  * Memastikan RecyclerView telah tampil
+  * Melakukan klik RecyclerView pada posisi 0
+  * Memastikan TextView title telah tampil
+  * Memastikan TextView genre telah tampil
+  * Memastikan TextView runtime telah tampil
+  * Memastikan TextView score telah tampil
+  * Memastikan TextView overview telah tampil
+  * Memastikan TextView release tidak tampil
+  * Memastikan ImageView poster telah tampil
+  * Memastikan TextView label season telah tampil
+  * Memastikan RecyclerView season telah tampil
+  * Memastikan FloatingActionButton share telah tampil
+  * Memastikan Toolbar tampil
+  * Memastikan Menu favorite tampil
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_border (not favorite)
+- Melakukan Aksi Favorite pada TVShow
+  * Berpindah ke halaman TV SHOWS
+  * Memastikan RecyclerView telah tampil
+  * Melakukan klik RecyclerView pada posisi 0
+  * Memastikan TextView title telah tampil
+  * Memastikan TextView genre telah tampil
+  * Memastikan TextView runtime telah tampil
+  * Memastikan TextView score telah tampil
+  * Memastikan TextView overview telah tampil
+  * Memastikan TextView release tidak tampil
+  * Memastikan ImageView poster telah tampil
+  * Memastikan TextView label season telah tampil
+  * Memastikan RecyclerView season telah tampil
+  * Memastikan FloatingActionButton share telah tampil
+  * Memastikan Toolbar tampil
+  * Memastikan Menu favorite tampil
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_border (not favorite)
+  * Melakukan klik pada Menu favorite
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_white (favorite)
+  * Mengambil title dari detail tv show (untuk memastikan masuk pada list favorite)
+  * Melakukan aksi back
+  * Berpindah ke halaman Favorite
+  * Memastikan RecyclerView tampil
+  * Melakukan klik RecyclerView pada posisi 0
+  * Memastikan TextView title telah tampil
+  * Memastikan TextView genre telah tampil
+  * Memastikan TextView runtime telah tampil
+  * Memastikan TextView score telah tampil
+  * Memastikan TextView overview telah tampil
+  * Memastikan TextView release tidak tampil
+  * Memastikan ImageView poster telah tampil
+  * Memastikan TextView label season telah tampil
+  * Memastikan RecyclerView season telah tampil
+  * Memastikan FloatingActionButton share telah tampil
+  * Memastikan Toolbar tampil
+  * Memastikan Menu favorite tampil
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_white (favorite)
+  * Melakukan klik pada Menu favorite
+  * Memastikan icon Menu favorite bernilai R.drawable.ic_favorite_border (not favorite)
+  * Melakukan aksi back
+  * Memastikan Data is Empty telah tampil

@@ -1,0 +1,24 @@
+dependencies {
+    //kotlin
+    implementation "androidx.core:core-ktx:$coreVersion"
+
+    //ui
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    implementation "androidx.activity:activity-ktx:$activityKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$activityKtxVersion"
+
+    //LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtxVersion"
+
+    //koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+}

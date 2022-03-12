@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_movies">
+
+    <action
+        android:id="@+id/action_navigation_movies_to_detailFilmActivity"
+        app:destination="@id/detailFilmActivity" />
+
+    <action
+        android:id="@+id/action_navigation_tv_shows_to_detailFilmActivity"
+        app:destination="@id/detailFilmActivity" />
+
+    <fragment
+        android:id="@+id/navigation_movies"
+        android:name="id.elfastudio.moviescatalogue.movie.MovieFragment"
+        android:label="@string/title_movies"
+        tools:layout="@layout/fragment_recycler" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_tv_shows"
+        android:name="id.elfastudio.moviescatalogue.tv_show.TvShowFragment"
+        android:label="@string/title_tv_shows"
+        tools:layout="@layout/fragment_recycler" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="id.elfastudio.moviecatalogue.favorite.FavoriteFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/detailFilmActivity"
+        android:name="id.elfastudio.moviescatalogue.detail.DetailFilmFragment"
+        android:label="fragment_detail_film"
+        tools:layout="@layout/fragment_detail_film" >
+        <argument
+            android:name="movie_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="tv_show_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+    <include-dynamic
+        android:id="@+id/dynamicFeatureFavorite"
+        app:graphPackage="id.elfastudio.moviecatalogue.favorite.FavoriteFragment"
+        app:graphResName="navigation_favorite"
+        app:moduleName="favorite" />
+
+</navigation>

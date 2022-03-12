@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/img_poster"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/poster_alita"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/film_poster" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/img_poster"
+        app:layout_constraintStart_toEndOf="@id/img_poster"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="16dp"
+        tools:text="Alita"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_release"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toEndOf="@id/img_poster"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="16dp"
+        tools:text="10/01/2021"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/tv_overview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_release"
+        app:layout_constraintStart_toEndOf="@id/img_poster"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="16dp"
+        tools:text="On the same side once more, Naruto and Sasuke prepare for battle as Obito absorbs the power of Ten Tails to become the tailed beast's Jinchuriki. As the other shinobi watch helplessly, Obito summons the Divine Tree and begins absorbing their chakra as he prepares to perform the Infinite Tsukuyomi. Naruto and his friends must rally their despairing allies to defeat Obito. But will the final battle truly be physical - or will it be a test of wills?"
+        android:textColor="@color/black"
+        android:maxLines="2"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Movies Catalogue</string>
+    <string name="movie">Movie</string>
+    <string name="tv_show">TV Show</string>
+    <string name="runtime">Runtime</string>
+    <string name="score">Score</string>
+    <string name="film_poster">Film Poster</string>
+
+    <string name="score_percent">%s%%</string>
+    <string name="overview">Overview</string>
+    <string name="seasons_episod">Seasons &amp; Episodes</string>
+    <string name="season_">Season %d</string>
+    <string name="year_and_episodes">%s | %s</string>
+    <string name="share_title">Share this Film</string>
+    <string name="share_button">Share Button</string>
+    <string name="lbl_loading">Loading…</string>
+    <string name="release_date">Release Date : %s</string>
+    <string name="detail_movie">Detail Movie</string>
+    <string name="detail_tv_show">Detail TV Show</string>
+    <string name="retry" tools:override="true">Retry</string>
+    <plurals name="episodes">
+        <item quantity="one">%d Episode</item>
+        <item quantity="other">%d Episodes</item>
+    </plurals>
+    <string name="title_movies">Movies</string>
+    <string name="title_tv_shows">TV Shows</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="data_empty">Data is Empty</string>
+</resources>

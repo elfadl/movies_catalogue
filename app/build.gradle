@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs"
+}
+
+apply from: '../shared_dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "id.elfastudio.moviescatalogue"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", '"234ffe4d9601620464cdcdcd674bd21c"')
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        viewBinding true
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+    dynamicFeatures = [':favorite']
+}
+
+dependencies {
+    implementation project(":core")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.paging:paging-common-ktx:$pagingVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigationDynamicFeaturesFragment"
+}
