@@ -34,7 +34,7 @@ class SeasonsAdapter : RecyclerView.Adapter<SeasonsAdapter.SeasonsViewHolder>() 
         fun bind(season: Season) {
             val context = binding.root.context
             with(binding) {
-                tvSeason.text = context.getString(R.string.season_, season.season)
+                tvSeason.text = context.getString(R.string.season_number, season.season)
                 tvYearAndEpisodes.text = context.getString(
                     R.string.year_and_episodes,
                     season.year,

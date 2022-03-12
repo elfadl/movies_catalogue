@@ -9,8 +9,8 @@
     <string name="score_percent">%s%%</string>
     <string name="overview">Overview</string>
     <string name="seasons_episod">Seasons &amp; Episodes</string>
-    <string name="season_">Season %d</string>
-    <string name="year_and_episodes">%s | %s</string>
+    <string name="season_number">Season %d</string>
+    <string name="year_and_episodes">$1%s | $2%s</string>
     <string name="share_title">Share this Film</string>
     <string name="share_button">Share Button</string>
     <string name="lbl_loading">Loading…</string>
