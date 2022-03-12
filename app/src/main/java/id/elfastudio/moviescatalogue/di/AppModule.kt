@@ -7,7 +7,7 @@ import id.elfastudio.moviescatalogue.core.domain.usecase.TvShowUseCase
 import id.elfastudio.moviescatalogue.detail.DetailFilmViewModel
 import id.elfastudio.moviescatalogue.movie.MovieViewModel
 import id.elfastudio.moviescatalogue.tv_show.TvShowViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {

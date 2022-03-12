@@ -18,7 +18,7 @@ import id.elfastudio.moviescatalogue.databinding.FragmentDetailFilmBinding
 import id.elfastudio.moviescatalogue.util.hide
 import id.elfastudio.moviescatalogue.util.loadImage
 import id.elfastudio.moviescatalogue.util.show
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFilmFragment : BaseFragment() {
 

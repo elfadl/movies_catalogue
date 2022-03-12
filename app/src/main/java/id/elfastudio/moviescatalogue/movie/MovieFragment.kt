@@ -22,7 +22,7 @@ import id.elfastudio.moviescatalogue.util.withLoadStateAdapters
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalPagingApi
 class MovieFragment(favorite: Boolean = false) : BaseFragment(), OnMovieClickListener {

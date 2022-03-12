@@ -50,4 +50,19 @@ dependencies {
     implementation "androidx.paging:paging-common-ktx:$pagingVersion"
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigationDynamicFeaturesFragment"
+
+    // Testing
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation "androidx.arch.core:core-testing:$androidCoreTestVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebserverVersion"
+    testImplementation "io.mockk:mockk:$mockKVersion"
+    testImplementation "io.mockk:mockk-agent-jvm:$mockKVersion"
+    testImplementation "androidx.test:core:$androidTestVersion"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"
 }
