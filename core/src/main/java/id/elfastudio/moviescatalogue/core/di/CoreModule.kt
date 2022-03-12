@@ -15,6 +15,8 @@ import id.elfastudio.moviescatalogue.core.data.source.remote.network.ApiHelperIm
 import id.elfastudio.moviescatalogue.core.data.source.remote.network.ApiService
 import id.elfastudio.moviescatalogue.core.domain.repository.IMovieRepository
 import id.elfastudio.moviescatalogue.core.domain.repository.ITvShowRepository
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -28,10 +30,14 @@ val databaseModule = module {
     factory { get<AppDatabase>().tvShowDao() }
     factory { get<AppDatabase>().tvShowRemoteKeysDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("kamal.elfadl".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             AppDatabase::class.java, AppDatabase.DATABASE_NAME
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
