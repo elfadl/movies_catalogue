@@ -32,7 +32,7 @@ class MovieRemoteMediator(
 
         try {
             val response = movieDataSource.getMovie(page)
-            var isEndOfList = false
+            var isEndOfList: Boolean? = null
             when(val apiResponse = response.first()){
                 is ApiResponse.Success -> {
                     isEndOfList = apiResponse.data.results.isNullOrEmpty()
@@ -42,7 +42,7 @@ class MovieRemoteMediator(
                             appDatabase.movieDao().deleteAll()
                         }
                         val prevKey = if (page == 1) null else page - 1
-                        val nextKey = if (isEndOfList) null else page + 1
+                        val nextKey = if (isEndOfList!!) null else page + 1
                         val remoteKeys = arrayListOf<MovieRemoteKeys>()
                         val data = arrayListOf<MovieEntity>()
                         val favorites = arrayListOf<FavoriteMovie>()
@@ -66,10 +66,10 @@ class MovieRemoteMediator(
                         appDatabase.movieDao().insertFavoriteMovie(favorites)
                     }
                 }
-                is ApiResponse.Error -> isEndOfList = true
-                is ApiResponse.Empty -> isEndOfList = true
+                is ApiResponse.Error -> isEndOfList = null
+                is ApiResponse.Empty -> isEndOfList = null
             }
-            return MediatorResult.Success(endOfPaginationReached = isEndOfList)
+            return MediatorResult.Success(endOfPaginationReached = isEndOfList!!)
         } catch (exception: IOException) {
             exception.printStackTrace()
             return MediatorResult.Error(exception)
