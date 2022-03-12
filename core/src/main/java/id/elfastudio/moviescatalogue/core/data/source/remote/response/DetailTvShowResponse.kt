@@ -1,9 +1,11 @@
 package id.elfastudio.moviescatalogue.core.data.source.remote.response
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.text.SimpleDateFormat
 import java.util.*
 
+@JsonClass(generateAdapter = false)
 data class DetailTvShowResponse(
 
 	@field:Json(name="episode_run_time")

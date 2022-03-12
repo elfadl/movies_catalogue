@@ -21,7 +21,11 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -59,6 +63,10 @@ dependencies {
     implementation ("androidx.paging:paging-runtime-ktx:$pagingVersion"){
         exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-core-jvm'
     }
+
+    // SQLite
+    implementation "net.zetetic:android-database-sqlcipher:$sqlcipher"
+    implementation "androidx.sqlite:sqlite-ktx:$sqliteKtx"
 
     //testing
     androidTestImplementation "junit:junit:$junitVersion"
