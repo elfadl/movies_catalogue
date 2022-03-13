@@ -29,7 +29,7 @@ class FavoriteFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setToolbar(binding?.toolbar)
         binding?.toolbar?.title = getString(R.string.title_favorite)
-        val sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, lifecycle)
+        val sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
         binding?.viewPager?.adapter = sectionsPagerAdapter
         binding?.let {
             TabLayoutMediator(it.tabs, it.viewPager){ tab, position ->
